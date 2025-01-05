@@ -1,7 +1,7 @@
 package com.github.westsi.realchem;
 
+import com.github.westsi.realchem.item.ModItems;
 import net.fabricmc.api.ModInitializer;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -11,5 +11,6 @@ public class RealChemistry implements ModInitializer {
 
 	@Override
 	public void onInitialize() {
+		ModItems.registerModItems();
 	}
 }
