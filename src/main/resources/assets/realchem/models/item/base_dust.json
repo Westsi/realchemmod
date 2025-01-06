@@ -1,6 +1,7 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "realchem:item/acacia_log"
+    "layer0": "realchem:item/spawn_egg",
+    "layer1": "realchem:item/spawn_egg_overlay"
   }
 }
