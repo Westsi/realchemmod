@@ -1,6 +1,10 @@
 package com.github.westsi.realchem;
 
+import com.github.westsi.realchem.block.ModBlocks;
+import com.github.westsi.realchem.component.ModDataComponentTypes;
+import com.github.westsi.realchem.item.ModItemGroups;
 import com.github.westsi.realchem.item.ModItems;
+import com.github.westsi.realchem.item.Dust;
 import net.fabricmc.api.ModInitializer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -12,5 +16,9 @@ public class RealChemistry implements ModInitializer {
 	@Override
 	public void onInitialize() {
 		ModItems.registerModItems();
+		ModBlocks.registerModBlocks();
+		Dust.registerDusts();
+		ModItemGroups.registerModItemGroups();
+		ModDataComponentTypes.registerDataComponentTypes();
 	}
 }

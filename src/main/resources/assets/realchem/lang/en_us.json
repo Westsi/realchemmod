@@ -1,4 +1,7 @@
 {
   "item.realchem.carbon_dust": "Carbon Dust",
-  "item.realchem.base_dust": "Base Dust"
+  "item.realchem.base_dust": "Base Dust",
+  "block.realchem.metal_block": "Metal Block",
+  "item.realchem.sulphur_dust": "Sulphur Dust",
+  "itemGroup.chemicals": "Chemicals"
 }

@@ -18,11 +18,11 @@
 		"main": [
 			"com.github.westsi.realchem.RealChemistry"
 		],
-		"fabric-datagen": [
-			"com.github.westsi.realchem.RealChemistryDataGenerator"
-		],
 		"client": [
 			"com.github.westsi.realchem.RealChemistryClient"
+		],
+		"fabric-datagen": [
+			"com.github.westsi.realchem.RealChemistryDataGenerator"
 		]
 	},
 	"mixins": [
