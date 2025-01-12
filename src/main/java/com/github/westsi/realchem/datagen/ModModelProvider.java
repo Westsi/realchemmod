@@ -16,6 +16,7 @@ public class ModModelProvider extends FabricModelProvider {
     public void generateBlockStateModels(BlockStateModelGenerator blockStateModelGenerator) {
 //        blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.METAL_BLOCK);
         blockStateModelGenerator.registerSingleton(ModBlocks.METAL_BLOCK, TexturedModel.LEAVES);
+        blockStateModelGenerator.registerCooker(ModBlocks.COMBUSTION_CHAMBER_BLOCK, TexturedModel.ORIENTABLE);
 //        blockStateModelGenerator.register();
     }
 

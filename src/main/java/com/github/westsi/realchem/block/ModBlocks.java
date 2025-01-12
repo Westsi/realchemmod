@@ -1,6 +1,7 @@
 package com.github.westsi.realchem.block;
 
 import com.github.westsi.realchem.RealChemistry;
+import com.github.westsi.realchem.block.custom.CombustionChamberBlock;
 import com.github.westsi.realchem.block.custom.LabBenchBlock;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.minecraft.block.AbstractBlock;
@@ -19,6 +20,9 @@ public class ModBlocks {
 
     public static final Block LAB_BENCH_BLOCK = registerBlock("lab_bench",
             new LabBenchBlock(Block.Settings.create().strength(4f).requiresTool().nonOpaque()));
+
+    public static final Block COMBUSTION_CHAMBER_BLOCK = registerBlock("combustion_chamber",
+            new CombustionChamberBlock(Block.Settings.create().strength(4f).requiresTool().nonOpaque()));
 
     private static Block registerBlock(String name, Block block) {
         Registry.register(Registries.ITEM, Identifier.of(RealChemistry.MOD_ID, name), new BlockItem(block, new Item.Settings()));

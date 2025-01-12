@@ -7,6 +7,7 @@ import com.github.westsi.realchem.component.ModDataComponentTypes;
 import com.github.westsi.realchem.item.ModItems;
 import com.github.westsi.realchem.item.Dust;
 import com.github.westsi.realchem.screen.ModScreenHandlers;
+import com.github.westsi.realchem.screen.custom.CombustionChamberScreen;
 import com.github.westsi.realchem.screen.custom.LabBenchScreen;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.rendering.v1.ColorProviderRegistry;
@@ -28,5 +29,6 @@ public class RealChemistryClient implements ClientModInitializer {
         BlockEntityRendererFactories.register(ModBlockEntities.LAB_BENCH_BE, LabBenchBlockEntityRenderer::new);
 
         HandledScreens.register(ModScreenHandlers.LAB_BENCH_SCREEN_HANDLER, LabBenchScreen::new);
+        HandledScreens.register(ModScreenHandlers.COMBUSTION_CHAMBER_SCREEN_HANDLER, CombustionChamberScreen::new);
     }
 }
