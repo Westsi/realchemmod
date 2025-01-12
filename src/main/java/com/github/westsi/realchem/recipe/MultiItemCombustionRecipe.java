@@ -13,6 +13,8 @@ import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.world.World;
 
+import java.util.ArrayList;
+
 public class MultiItemCombustionRecipe implements Recipe<MultiItemCombustionRecipeInput> {
     private final DefaultedList<Ingredient> ingredients;
     private final ItemStack output;
@@ -32,7 +34,7 @@ public class MultiItemCombustionRecipe implements Recipe<MultiItemCombustionReci
         if (input.getSize() != this.ingredients.size()) {
             return false;
         }
-        DefaultedList<Ingredient> copy = this.ingredients;
+        ArrayList<Ingredient> copy = new ArrayList<>(ingredients.stream().toList());
         for (int i=0; i< input.getSize();i++) {
             ItemStack in = input.getStackInSlot(i);
             boolean is = false;
@@ -62,6 +64,10 @@ public class MultiItemCombustionRecipe implements Recipe<MultiItemCombustionReci
 
     @Override
     public ItemStack getResult(RegistryWrapper.WrapperLookup registriesLookup) {
+        return output;
+    }
+
+    public ItemStack output() {
         return output;
     }
 

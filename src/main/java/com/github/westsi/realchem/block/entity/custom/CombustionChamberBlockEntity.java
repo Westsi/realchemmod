@@ -3,9 +3,7 @@ package com.github.westsi.realchem.block.entity.custom;
 import com.github.westsi.realchem.block.custom.CombustionChamberBlock;
 import com.github.westsi.realchem.block.entity.ImplementedInventory;
 import com.github.westsi.realchem.block.entity.ModBlockEntities;
-import com.github.westsi.realchem.recipe.CombustionRecipe;
-import com.github.westsi.realchem.recipe.CombustionRecipeInput;
-import com.github.westsi.realchem.recipe.ModRecipes;
+import com.github.westsi.realchem.recipe.*;
 import com.github.westsi.realchem.screen.custom.CombustionChamberScreenHandler;
 import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerFactory;
 import net.minecraft.block.BlockState;
@@ -19,6 +17,7 @@ import net.minecraft.nbt.NbtCompound;
 import net.minecraft.network.listener.ClientPlayPacketListener;
 import net.minecraft.network.packet.Packet;
 import net.minecraft.network.packet.s2c.play.BlockEntityUpdateS2CPacket;
+import net.minecraft.recipe.Ingredient;
 import net.minecraft.recipe.RecipeEntry;
 import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.screen.PropertyDelegate;
@@ -135,9 +134,10 @@ public class CombustionChamberBlockEntity extends BlockEntity implements Extende
     }
 
     private void craftItem() {
-        Optional<RecipeEntry<CombustionRecipe>> recipe = getCurrentRecipe();
-
+        Optional<RecipeEntry<MultiItemCombustionRecipe>> recipe = getCurrentRecipe();
+        // TODO: these counts will have to be changed if you want to use different quantities of stuff!
         this.removeStack(INPUT_SLOT_2, 1);
+        this.removeStack(INPUT_SLOT_1, 1);
         this.setStack(OUTPUT_SLOT_1, new ItemStack(recipe.get().value().output().getItem(),
                 this.getStack(OUTPUT_SLOT_1).getCount() + recipe.get().value().output().getCount()));
     }
@@ -156,16 +156,16 @@ public class CombustionChamberBlockEntity extends BlockEntity implements Extende
     }
 
     private boolean hasRecipe() {
-        Optional<RecipeEntry<CombustionRecipe>> recipe = getCurrentRecipe();
+        Optional<RecipeEntry<MultiItemCombustionRecipe>> recipe = getCurrentRecipe();
         if (recipe.isEmpty()) {
             return false;
         }
         ItemStack output = recipe.get().value().getResult(null);
         return canInsertAmountIntoOutputSlot1(output.getCount()) && canInsertItemIntoOutputSlot1(output);
     }
-    private Optional<RecipeEntry<CombustionRecipe>> getCurrentRecipe() {
+    private Optional<RecipeEntry<MultiItemCombustionRecipe>> getCurrentRecipe() {
         return this.getWorld().getRecipeManager()
-                .getFirstMatch(ModRecipes.COMBUSTION_TYPE, new CombustionRecipeInput(inventory.get(INPUT_SLOT_2)), this.getWorld());
+                .getFirstMatch(ModRecipes.MULTI_COMBUSTION_TYPE, new MultiItemCombustionRecipeInput(inventory.get(INPUT_SLOT_2), inventory.get(INPUT_SLOT_1)), this.getWorld());
     }
 
     private boolean canInsertItemIntoOutputSlot1(ItemStack output) {

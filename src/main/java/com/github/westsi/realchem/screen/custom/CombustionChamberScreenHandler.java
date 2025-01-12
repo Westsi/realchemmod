@@ -30,7 +30,7 @@ public class CombustionChamberScreenHandler extends ScreenHandler {
         this.propertyDelegate = arrayPropertyDelegate;
         this.blockEntity = ((CombustionChamberBlockEntity) blockEntity);
 
-//        this.addSlot(new Slot(inventory, 0, 8, 62));
+        this.addSlot(new Slot(inventory, 0, 8, 62));
         this.addSlot(new Slot(inventory, 1, 54, 34));
         this.addSlot(new Slot(inventory, 2, 104, 34));
         this.addSlot(new Slot(inventory, 3, 152, 62));

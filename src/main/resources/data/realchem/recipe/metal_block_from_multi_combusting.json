@@ -1,0 +1,15 @@
+{
+  "type": "realchem:multi_combusting",
+  "ingredients": [
+    {
+      "item": "realchem:sulphur_dust"
+    },
+    {
+      "item": "realchem:carbon_dust"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "realchem:metal_block"
+  }
+}
