@@ -16,6 +16,7 @@ import net.minecraft.util.Identifier;
 
 public class ModItems {
     public static final Item BASE_DUST = registerItem("base_dust", new Item(new Item.Settings()));
+    public static final Item BASE_SOLUTION = registerItem("base_solution", new Item(new Item.Settings()));
 
     private static Item registerItem(String name, Item item) {
         return Registry.register(Registries.ITEM, Identifier.of(RealChemistry.MOD_ID, name), item);

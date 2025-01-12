@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/orientable",
+  "textures": {
+    "front": "realchem:block/combustion_chamber_front",
+    "side": "realchem:block/combustion_chamber_side",
+    "top": "realchem:block/combustion_chamber_top"
+  }
+}

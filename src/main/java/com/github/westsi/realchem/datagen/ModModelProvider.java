@@ -3,6 +3,7 @@ package com.github.westsi.realchem.datagen;
 import com.github.westsi.realchem.block.ModBlocks;
 import com.github.westsi.realchem.item.ModItems;
 import com.github.westsi.realchem.item.Dust;
+import com.github.westsi.realchem.item.Solution;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricModelProvider;
 import net.minecraft.data.client.*;
@@ -24,5 +25,6 @@ public class ModModelProvider extends FabricModelProvider {
     public void generateItemModels(ItemModelGenerator itemModelGenerator) {
         itemModelGenerator.register(ModItems.BASE_DUST, Models.GENERATED);
         Dust.generateDustModels(itemModelGenerator);
+        Solution.generateSolutionModels(itemModelGenerator);
     }
 }

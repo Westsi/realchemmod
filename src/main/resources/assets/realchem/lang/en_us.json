@@ -1,10 +1,13 @@
 {
   "item.realchem.carbon_dust": "Carbon Dust",
   "item.realchem.base_dust": "Base Dust",
+  "item.realchem.sulphur_dust": "Sulphur Dust",
+  "item.realchem.base_solution": "Base Solution",
+  "item.realchem.sulphuric_acid": "Beaker of Sulphuric Acid",
+  "item.realchem.copper_sulphate_sol": "Beaker of Copper Sulphate",
   "block.realchem.metal_block": "Metal Block",
   "block.realchem.lab_bench": "Lab Bench",
   "block.realchem.combustion_chamber": "Combustion Chamber",
-  "item.realchem.sulphur_dust": "Sulphur Dust",
   "itemGroup.chemicals": "Chemicals",
   "gui.realchem.lab_bench": "Lab Bench",
   "gui.realchem.combustion_chamber": "Combustion Chamber"

@@ -1,0 +1,13 @@
+// 1.21.1	2025-01-12T20:32:56.679908	Real Chemistry/Model Definitions
+6a3be21454e440e07e2c1b95fc9beef24aab7644 assets\realchem\blockstates\metal_block.json
+9e8fd0e6541e82ebef1dfcdf8374e88c963802a6 assets\realchem\models\block\combustion_chamber.json
+55246a3bc62eb3792cf3bad3946cf0d71ed51e19 assets\realchem\blockstates\combustion_chamber.json
+c6925cc7f3dae793438a393068decea6fa922a6a assets\realchem\models\item\combustion_chamber.json
+a2ff4f4f91685dc473c6b97d9b63632bddc5b787 assets\realchem\models\item\sulphuric_acid.json
+63dd5ca4c910c93b18146ab0035fd8f0b8fc7fb4 assets\realchem\models\item\sulphur_dust.json
+63dd5ca4c910c93b18146ab0035fd8f0b8fc7fb4 assets\realchem\models\item\carbon_dust.json
+63dd5ca4c910c93b18146ab0035fd8f0b8fc7fb4 assets\realchem\models\item\base_dust.json
+a2ff4f4f91685dc473c6b97d9b63632bddc5b787 assets\realchem\models\item\copper_sulphate_sol.json
+e215fc0b1185f0e14ff11198a841b7a4c5ce848c assets\realchem\models\block\metal_block.json
+037fc5ae328497eb771ce1073193ed8e8d4ab109 assets\realchem\models\item\metal_block.json
+e502bcf423155ac5c853991b2ecbf377f681a22c assets\realchem\models\block\combustion_chamber_on.json

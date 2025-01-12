@@ -6,6 +6,7 @@ import com.github.westsi.realchem.component.ModDataComponentTypes;
 import com.github.westsi.realchem.item.ModItemGroups;
 import com.github.westsi.realchem.item.ModItems;
 import com.github.westsi.realchem.item.Dust;
+import com.github.westsi.realchem.item.Solution;
 import com.github.westsi.realchem.recipe.ModRecipes;
 import com.github.westsi.realchem.screen.ModScreenHandlers;
 import net.fabricmc.api.ModInitializer;
@@ -21,6 +22,7 @@ public class RealChemistry implements ModInitializer {
 		ModItems.registerModItems();
 		ModBlocks.registerModBlocks();
 		Dust.registerDusts();
+		Solution.registerSolutions();
 		ModItemGroups.registerModItemGroups();
 		ModDataComponentTypes.registerDataComponentTypes();
 		ModBlockEntities.registerBlockEntities();
