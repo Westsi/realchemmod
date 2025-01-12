@@ -35,4 +35,6 @@ public class Dust {
             itemModelGenerator.register(i, ModItems.BASE_DUST, Models.GENERATED);
         }
     }
+    // TODO: make a block entity to do reactions in
+    //  create the output of the reaction on the fly - register, inject model json, add tinting
 }

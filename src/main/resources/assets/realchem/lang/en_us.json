@@ -2,6 +2,8 @@
   "item.realchem.carbon_dust": "Carbon Dust",
   "item.realchem.base_dust": "Base Dust",
   "block.realchem.metal_block": "Metal Block",
+  "block.realchem.lab_bench": "Lab Bench",
   "item.realchem.sulphur_dust": "Sulphur Dust",
-  "itemGroup.chemicals": "Chemicals"
+  "itemGroup.chemicals": "Chemicals",
+  "gui.realchem.lab_bench": "Lab Bench"
 }

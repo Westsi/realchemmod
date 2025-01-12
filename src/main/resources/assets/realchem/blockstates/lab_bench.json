@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "realchem:block/lab_bench"
+    }
+  }
+}
