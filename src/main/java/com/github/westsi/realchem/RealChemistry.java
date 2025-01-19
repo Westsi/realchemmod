@@ -19,12 +19,12 @@ public class RealChemistry implements ModInitializer {
 
 	@Override
 	public void onInitialize() {
+		ModDataComponentTypes.registerDataComponentTypes();
 		ModItems.registerModItems();
 		ModBlocks.registerModBlocks();
 		Dust.registerDusts();
 		Solution.registerSolutions();
 		ModItemGroups.registerModItemGroups();
-		ModDataComponentTypes.registerDataComponentTypes();
 		ModBlockEntities.registerBlockEntities();
 		ModScreenHandlers.registerScreenHandlers();
 		ModRecipes.registerRecipes();
