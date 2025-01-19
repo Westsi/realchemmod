@@ -3,6 +3,7 @@ package com.github.westsi.realchem.block;
 import com.github.westsi.realchem.RealChemistry;
 import com.github.westsi.realchem.block.custom.CombustionChamberBlock;
 import com.github.westsi.realchem.block.custom.LabBenchBlock;
+import com.github.westsi.realchem.item.ModItemGroups;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
@@ -32,7 +33,7 @@ public class ModBlocks {
     public static void registerModBlocks(){
         RealChemistry.LOGGER.info("Registering blocks for " + RealChemistry.MOD_ID);
 
-        ItemGroupEvents.modifyEntriesEvent(ItemGroups.BUILDING_BLOCKS).register(entries -> {
+        ItemGroupEvents.modifyEntriesEvent(ModItemGroups.CHEMICALS_ITEM_GROUP_KEY).register(entries -> {
             entries.add(METAL_BLOCK);
         });
     }

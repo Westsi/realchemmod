@@ -1,9 +1,9 @@
 package com.github.westsi.realchem.block.entity.custom;
 
-import com.github.westsi.realchem.RealChemistry;
 import com.github.westsi.realchem.block.custom.CombustionChamberBlock;
 import com.github.westsi.realchem.block.entity.ImplementedInventory;
 import com.github.westsi.realchem.block.entity.ModBlockEntities;
+import com.github.westsi.realchem.chemistry.formula.FormulaResolver;
 import com.github.westsi.realchem.chemistry.reaction.Reaction;
 import com.github.westsi.realchem.chemistry.reaction.ReactionType;
 import com.github.westsi.realchem.component.ModDataComponentTypes;
@@ -15,13 +15,11 @@ import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.Inventories;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.network.listener.ClientPlayPacketListener;
 import net.minecraft.network.packet.Packet;
 import net.minecraft.network.packet.s2c.play.BlockEntityUpdateS2CPacket;
-import net.minecraft.recipe.Ingredient;
 import net.minecraft.recipe.RecipeEntry;
 import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.screen.PropertyDelegate;
@@ -120,8 +118,6 @@ public class CombustionChamberBlockEntity extends BlockEntity implements Extende
 
         if(reactionPossible() && canInsertIntoOutputSlot1()) {
             increaseCraftingProgress();
-//            inventory.get(INPUT_SLOT_1).set(ModDataComponentTypes.COMPOUND_COLOR, 0xff326f87);
-//            inventory.get(INPUT_SLOT_2).set(ModDataComponentTypes.COMPOUND_COLOR, 0xff6283ff);
             world.setBlockState(pos, state.with(CombustionChamberBlock.LIT, true));
             markDirty(world, pos, state);
 
@@ -142,14 +138,20 @@ public class CombustionChamberBlockEntity extends BlockEntity implements Extende
 
     private void craftItem() {
         Optional<RecipeEntry<MultiItemCombustionRecipe>> reaction = getCurrentReaction();
-        // TODO: these counts will have to be changed if you want to use different quantities of stuff!
         ItemStack outputChem = new ItemStack(reaction.get().value().output().getItem(),
                 this.getStack(OUTPUT_SLOT_1).getCount() + reaction.get().value().output().getCount());
         Integer outputColor = 0xff000000 | ColorHelper.Argb.averageArgb(
-                inventory.get(INPUT_SLOT_1).get(ModDataComponentTypes.COMPOUND_COLOR),
-                inventory.get(INPUT_SLOT_2).get(ModDataComponentTypes.COMPOUND_COLOR));
+                inventory.get(INPUT_SLOT_1).getOrDefault(ModDataComponentTypes.COMPOUND_COLOR, 0xffffffff),
+                inventory.get(INPUT_SLOT_2).getOrDefault(ModDataComponentTypes.COMPOUND_COLOR, 0xffffffff));
+        String outputSmiles = Reaction.getOutputSmiles(
+                inventory.get(INPUT_SLOT_1).getOrDefault(ModDataComponentTypes.COMPOUND_SMILES, ""),
+                inventory.get(INPUT_SLOT_2).getOrDefault(ModDataComponentTypes.COMPOUND_SMILES, "")
+        );
+        outputChem.set(ModDataComponentTypes.COMPOUND_NAME, FormulaResolver.getChemicalNameFromSMILES(outputSmiles));
+        outputChem.set(ModDataComponentTypes.COMPOUND_SMILES, outputSmiles);
         outputChem.set(ModDataComponentTypes.COMPOUND_COLOR, outputColor);
         this.setStack(OUTPUT_SLOT_1, outputChem);
+        // TODO: these counts will have to be changed if you want to use different quantities of stuff!
         this.removeStack(INPUT_SLOT_2, 1);
         this.removeStack(INPUT_SLOT_1, 1);
     }

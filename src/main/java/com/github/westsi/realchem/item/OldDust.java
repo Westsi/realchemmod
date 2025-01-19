@@ -12,7 +12,7 @@ import net.minecraft.util.Identifier;
 
 import java.util.ArrayList;
 
-public class Dust {
+public class OldDust {
     public static final ArrayList<Item> DUSTS = new ArrayList<>();
 
     private static Item createDust(String name, int color) {

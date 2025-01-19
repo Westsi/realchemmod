@@ -14,6 +14,12 @@ public class ModDataComponentTypes {
     public static final ComponentType<Integer> COMPOUND_COLOR =
             register("compound_color", builder -> builder.codec(Codec.INT));
 
+    public static final ComponentType<String> COMPOUND_SMILES =
+            register("compound_formula", builder -> builder.codec(Codec.STRING));
+
+    public static final ComponentType<String> COMPOUND_NAME =
+            register("compound_name", builder -> builder.codec(Codec.STRING));
+
     private static <T>ComponentType<T> register(String name, UnaryOperator<ComponentType.Builder<T>> builderOperator) {
         return Registry.register(Registries.DATA_COMPONENT_TYPE, Identifier.of(RealChemistry.MOD_ID, name),
                 builderOperator.apply(ComponentType.builder()).build());

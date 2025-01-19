@@ -14,7 +14,7 @@ import net.minecraft.util.Identifier;
 public class ModItemGroups {
     public static final RegistryKey<ItemGroup> CHEMICALS_ITEM_GROUP_KEY = RegistryKey.of(Registries.ITEM_GROUP.getKey(), Identifier.of(RealChemistry.MOD_ID, "chemicals"));
     public static final ItemGroup CHEMICALS_ITEM_GROUP = FabricItemGroup.builder()
-            .icon(() -> new ItemStack(ModItems.DUST))
+            .icon(ModItemGroups::getChemicalsGroupIcon)
             .displayName(Text.translatable("itemGroup.chemicals"))
             .build();
 
