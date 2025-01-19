@@ -1,8 +1,8 @@
 {
   "item.realchem.carbon_dust": "Carbon Dust",
-  "item.realchem.base_dust": "Base Dust",
+  "item.realchem.dust": "Dust",
   "item.realchem.sulphur_dust": "Sulphur Dust",
-  "item.realchem.base_solution": "Base Solution",
+  "item.realchem.beaker": "Beaker",
   "item.realchem.sulphuric_acid": "Beaker of Sulphuric Acid",
   "item.realchem.copper_sulphate_sol": "Beaker of Copper Sulphate",
   "block.realchem.metal_block": "Metal Block",

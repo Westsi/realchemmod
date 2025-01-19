@@ -32,7 +32,7 @@ public class Dust {
 
     public static void generateDustModels(ItemModelGenerator itemModelGenerator) {
         for (Item i : DUSTS) {
-            itemModelGenerator.register(i, ModItems.BASE_DUST, Models.GENERATED);
+            itemModelGenerator.register(i, ModItems.DUST, Models.GENERATED);
         }
     }
     // TODO: make a block entity to do reactions in

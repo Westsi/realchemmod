@@ -1,7 +1,0 @@
-{
-  "parent": "minecraft:item/generated",
-  "textures": {
-    "layer0": "realchem:item/base_solution",
-    "layer1": "realchem:item/base_solution_overlay"
-  }
-}

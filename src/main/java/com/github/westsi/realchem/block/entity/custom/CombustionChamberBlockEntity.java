@@ -1,8 +1,12 @@
 package com.github.westsi.realchem.block.entity.custom;
 
+import com.github.westsi.realchem.RealChemistry;
 import com.github.westsi.realchem.block.custom.CombustionChamberBlock;
 import com.github.westsi.realchem.block.entity.ImplementedInventory;
 import com.github.westsi.realchem.block.entity.ModBlockEntities;
+import com.github.westsi.realchem.chemistry.reaction.Reaction;
+import com.github.westsi.realchem.chemistry.reaction.ReactionType;
+import com.github.westsi.realchem.component.ModDataComponentTypes;
 import com.github.westsi.realchem.recipe.*;
 import com.github.westsi.realchem.screen.custom.CombustionChamberScreenHandler;
 import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerFactory;
@@ -26,6 +30,7 @@ import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.text.Text;
 import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.ColorHelper;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
@@ -113,8 +118,10 @@ public class CombustionChamberBlockEntity extends BlockEntity implements Extende
             return;
         }
 
-        if(hasRecipe() && canInsertIntoOutputSlot1()) {
+        if(reactionPossible() && canInsertIntoOutputSlot1()) {
             increaseCraftingProgress();
+//            inventory.get(INPUT_SLOT_1).set(ModDataComponentTypes.COMPOUND_COLOR, 0xff326f87);
+//            inventory.get(INPUT_SLOT_2).set(ModDataComponentTypes.COMPOUND_COLOR, 0xff6283ff);
             world.setBlockState(pos, state.with(CombustionChamberBlock.LIT, true));
             markDirty(world, pos, state);
 
@@ -134,12 +141,17 @@ public class CombustionChamberBlockEntity extends BlockEntity implements Extende
     }
 
     private void craftItem() {
-        Optional<RecipeEntry<MultiItemCombustionRecipe>> recipe = getCurrentRecipe();
+        Optional<RecipeEntry<MultiItemCombustionRecipe>> reaction = getCurrentReaction();
         // TODO: these counts will have to be changed if you want to use different quantities of stuff!
+        ItemStack outputChem = new ItemStack(reaction.get().value().output().getItem(),
+                this.getStack(OUTPUT_SLOT_1).getCount() + reaction.get().value().output().getCount());
+        Integer outputColor = 0xff000000 | ColorHelper.Argb.averageArgb(
+                inventory.get(INPUT_SLOT_1).get(ModDataComponentTypes.COMPOUND_COLOR),
+                inventory.get(INPUT_SLOT_2).get(ModDataComponentTypes.COMPOUND_COLOR));
+        outputChem.set(ModDataComponentTypes.COMPOUND_COLOR, outputColor);
+        this.setStack(OUTPUT_SLOT_1, outputChem);
         this.removeStack(INPUT_SLOT_2, 1);
         this.removeStack(INPUT_SLOT_1, 1);
-        this.setStack(OUTPUT_SLOT_1, new ItemStack(recipe.get().value().output().getItem(),
-                this.getStack(OUTPUT_SLOT_1).getCount() + recipe.get().value().output().getCount()));
     }
 
     private boolean hasCraftingFinished() {
@@ -155,15 +167,16 @@ public class CombustionChamberBlockEntity extends BlockEntity implements Extende
                 this.getStack(OUTPUT_SLOT_1).getCount() < this.getStack(OUTPUT_SLOT_1).getMaxCount();
     }
 
-    private boolean hasRecipe() {
-        Optional<RecipeEntry<MultiItemCombustionRecipe>> recipe = getCurrentRecipe();
+    private boolean reactionPossible() {
+        Optional<RecipeEntry<MultiItemCombustionRecipe>> recipe = getCurrentReaction();
         if (recipe.isEmpty()) {
             return false;
         }
+        boolean possible = Reaction.reactionPossible("chem1", "chem2", ReactionType.COMBUSTION);
         ItemStack output = recipe.get().value().getResult(null);
-        return canInsertAmountIntoOutputSlot1(output.getCount()) && canInsertItemIntoOutputSlot1(output);
+        return outputSlot1Good(output) && outputSlot2Good(output) && possible;
     }
-    private Optional<RecipeEntry<MultiItemCombustionRecipe>> getCurrentRecipe() {
+    private Optional<RecipeEntry<MultiItemCombustionRecipe>> getCurrentReaction() {
         return this.getWorld().getRecipeManager()
                 .getFirstMatch(ModRecipes.MULTI_COMBUSTION_TYPE, new MultiItemCombustionRecipeInput(inventory.get(INPUT_SLOT_2), inventory.get(INPUT_SLOT_1)), this.getWorld());
     }
@@ -177,6 +190,14 @@ public class CombustionChamberBlockEntity extends BlockEntity implements Extende
         int currentCount = this.getStack(OUTPUT_SLOT_1).getCount();
 
         return maxCount >= currentCount + count;
+    }
+
+    private boolean outputSlot1Good(ItemStack output) {
+        return true;
+    }
+
+    private boolean outputSlot2Good(ItemStack output) {
+        return true;
     }
 
     @Nullable

@@ -1,22 +1,16 @@
 package com.github.westsi.realchem.item;
 
 import com.github.westsi.realchem.RealChemistry;
-import net.fabricmc.fabric.api.client.rendering.v1.ColorProviderRegistry;
-import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
-import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
+import com.github.westsi.realchem.component.ModDataComponentTypes;
+import net.minecraft.component.ComponentType;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemGroup;
-import net.minecraft.item.ItemGroups;
-import net.minecraft.item.ItemStack;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
-import net.minecraft.registry.RegistryKey;
-import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 
 public class ModItems {
-    public static final Item BASE_DUST = registerItem("base_dust", new Item(new Item.Settings()));
-    public static final Item BASE_SOLUTION = registerItem("base_solution", new Item(new Item.Settings()));
+    public static final Item DUST = registerItem("dust", new Item(new Item.Settings().component(ModDataComponentTypes.COMPOUND_COLOR, 0xffffffff)));
+    public static final Item BEAKER = registerItem("beaker", new Item(new Item.Settings().component(ModDataComponentTypes.COMPOUND_COLOR, 0x00000000)));
 
     private static Item registerItem(String name, Item item) {
         return Registry.register(Registries.ITEM, Identifier.of(RealChemistry.MOD_ID, name), item);

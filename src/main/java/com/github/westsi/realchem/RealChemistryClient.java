@@ -22,10 +22,21 @@ public class RealChemistryClient implements ClientModInitializer {
 //        RealChemistry.LOGGER.warn("INITIALIZING CLIENT");
         ColorProviderRegistry.BLOCK.register((state, view, pos, tintIndex) -> 0xffff0000, ModBlocks.METAL_BLOCK);
         ColorProviderRegistry.ITEM.register((stack, tintIndex) -> 0xffff0000, ModBlocks.METAL_BLOCK);
-        ColorProviderRegistry.ITEM.register((stack, tintIndex) -> 0xffff0000, ModItems.BASE_DUST);
+//        ColorProviderRegistry.ITEM.register(
+//                (stack, tintIndex) -> stack.getOrDefault(ModDataComponentTypes.COMPOUND_COLOR, 0xffff00ff),
+//                Dust.DUSTS.toArray(ItemConvertible[]::new));
         ColorProviderRegistry.ITEM.register(
-                (stack, tintIndex) -> stack.getOrDefault(ModDataComponentTypes.COMPOUND_COLOR, 0xffff00ff),
-                Dust.DUSTS.toArray(ItemConvertible[]::new));
+                (stack, tintIndex) -> 0xff000000 | stack.getOrDefault(ModDataComponentTypes.COMPOUND_COLOR, 0xffff00ff),
+                ModItems.DUST);
+
+//        ColorProviderRegistry.ITEM.register(
+//                (stack, tintIndex) -> {
+//                    if (tintIndex == 1) {
+//                        return stack.getOrDefault(ModDataComponentTypes.COMPOUND_COLOR, 0xffff00ff);
+//                    }
+//                    return -1;
+//                },
+//                Solution.SOLUTIONS.toArray(ItemConvertible[]::new));
 
         ColorProviderRegistry.ITEM.register(
                 (stack, tintIndex) -> {
@@ -34,7 +45,7 @@ public class RealChemistryClient implements ClientModInitializer {
                     }
                     return -1;
                 },
-                Solution.SOLUTIONS.toArray(ItemConvertible[]::new));
+                ModItems.BEAKER);
 
         BlockEntityRendererFactories.register(ModBlockEntities.LAB_BENCH_BE, LabBenchBlockEntityRenderer::new);
 

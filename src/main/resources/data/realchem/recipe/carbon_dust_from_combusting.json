@@ -1,10 +1,10 @@
 {
   "type": "realchem:combusting",
   "ingredient": {
-    "item": "realchem:sulphur_dust"
+    "item": "realchem:dust"
   },
   "result": {
     "count": 16,
-    "id": "realchem:carbon_dust"
+    "id": "realchem:dust"
   }
 }

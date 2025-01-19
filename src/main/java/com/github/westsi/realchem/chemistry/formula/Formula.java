@@ -1,4 +1,4 @@
-package com.github.westsi.realchem.formula;
+package com.github.westsi.realchem.chemistry.formula;
 
 import java.util.HashMap;
 

@@ -32,7 +32,7 @@ public class Solution {
     }
 
     public static void generateSolutionModels(ItemModelGenerator itemModelGenerator) {
-        Model model = new Model(Optional.of(Identifier.of(RealChemistry.MOD_ID, "item/base_solution")), Optional.empty());
+        Model model = new Model(Optional.of(Identifier.of(RealChemistry.MOD_ID, "item/beaker")), Optional.empty());
         for (Item i : SOLUTIONS) {
             itemModelGenerator.register(i, model);
         }

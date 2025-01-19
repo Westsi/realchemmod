@@ -23,8 +23,8 @@ public class ModModelProvider extends FabricModelProvider {
 
     @Override
     public void generateItemModels(ItemModelGenerator itemModelGenerator) {
-        itemModelGenerator.register(ModItems.BASE_DUST, Models.GENERATED);
-        Dust.generateDustModels(itemModelGenerator);
-        Solution.generateSolutionModels(itemModelGenerator);
+        itemModelGenerator.register(ModItems.DUST, Models.GENERATED);
+//        Dust.generateDustModels(itemModelGenerator);
+//        Solution.generateSolutionModels(itemModelGenerator);
     }
 }
